@@ -1,8 +1,8 @@
-FROM rust:1.46.0 AS build
+FROM rust:1.50.0 AS build
 
 RUN cargo install diesel_cli --no-default-features --features postgres
 
-FROM gleamlang/gleam:0.12.1
+FROM ghcr.io/gleam-lang/gleam:v0.14.2-elixir
 
 COPY --from=build /usr/local/cargo/bin/diesel /bin
 RUN diesel --version
